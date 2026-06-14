@@ -1,1 +1,28 @@
+# Environment
 .env
+*.env
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# SQLite database (local dev only)
+*.db
+*.sqlite3
+
+# Node modules
+node_modules/
+
+# Vite / build artifacts
+frontend/dist/
+frontend/.vite/
+
+# OS
+.DS_Store
+Thumbs.db

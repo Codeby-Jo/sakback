@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import models
 from database import engine
-from routes import auth, profile, match, kyc
+from routes import auth, profile, match, kyc, conversation
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -17,10 +17,11 @@ app.add_middleware(
 )
 
 
-app.include_router(auth.router)
-app.include_router(profile.router)
-app.include_router(match.router)
-app.include_router(kyc.router)
+app.include_router(auth.router, prefix="/api/v1/nis")
+app.include_router(profile.router, prefix="/api/v1/nis")
+app.include_router(match.router, prefix="/api/v1/nis")
+app.include_router(kyc.router, prefix="/api/v1/nis")
+app.include_router(conversation.router, prefix="/api/v1/nis")
 
 @app.get("/")
 def read_root():

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database import get_db
-from models import User, Preferences, ConsideredSet, CandidateInteraction, Conversation
+from models import User, Preferences, ConsideredSet, CandidateInteraction, Conversation, PsychologicalProfile
 from security import get_current_user
 import uuid
 

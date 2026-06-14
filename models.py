@@ -137,3 +137,15 @@ class Conversation(Base):
     wali_present = Column(Boolean, default=False)
     photo_unlocked = Column(Boolean, default=False)
     source = Column(String(50), default="NIS_MUTUAL_INTEREST")
+    messages = relationship("ConversationMessage", back_populates="conversation", cascade="all, delete-orphan")
+
+class ConversationMessage(Base):
+    __tablename__ = "conversation_messages"
+    id = Column(Integer, primary_key=True, index=True)
+    conversation_id = Column(String(100), ForeignKey("conversations.conversation_id", ondelete="CASCADE"), nullable=False)
+    sender_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    text = Column(String, nullable=False)
+    msg_type = Column(String(20), default="text")  # text, system, image, video
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    conversation = relationship("Conversation", back_populates="messages")
+    sender = relationship("User")
